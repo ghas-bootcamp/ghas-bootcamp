@@ -3,6 +3,9 @@
 ### Code scanning API
 The code scanning REST API can be used to retrieve information or modify existing information. Explore the options [here](https://docs.github.com/en/free-pro-team@latest/rest/reference/code-scanning).
 
+### Secret scanning API
+The secret scanning API lets you retrieve and update secret scanning alerts from a private repository. Explore the options [here](https://docs.github.com/en/rest/reference/secret-scanning)
+
 ### Automating Dependabot
 
 For the Dependabot service, we have both REST and GraphQL endpoints that allow us to configure aspects and retrieve information.

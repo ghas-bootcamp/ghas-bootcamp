@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "c4ff5f9c-1979-4184-a4db-c2c2ebc1455b",
+		"name": "Gallery service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get gallery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/gallery",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gallery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all art",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/gallery/art",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gallery",
+						"art"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add art piece",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Mona Lovelace\",\n    \"description\": \"English noblewoman, daughter of Lord Byron, computer pioneer\",\n    \"uri\": \"https://octodex.github.com/images/mona-lovelace.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/gallery/art",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gallery",
+						"art"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update gallery",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":1,\"title\":\"Computer Science Art\",\"description\":\" Computer science art from the world's greatest living artists.!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/gallery",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gallery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update art",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Mona Lovelace\",\n    \"description\": \"English noblewoman, daughter of Lord Byron, computer pioneer\",\n    \"stars\": 5,\n    \"uri\": \"https://octodex.github.com/images/mona-lovelace.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/gallery/art/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gallery",
+						"art",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get art",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/gallery/art/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gallery",
+						"art",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete art",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/gallery/art/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"gallery",
+						"art",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "93169b84-bf5a-4707-83dc-b094a595d5f8",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "02de64fe-4d3d-4876-8e8e-157af34485f3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "26f67604-3f1e-458b-93fe-8590c47fd238",
+			"key": "access_token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPY3RvR2FsbGVyeSIsImlhdCI6MTYwNDM5Njk4MSwiZXhwIjoxNjA0NDgzMzgxLCJwcm9maWxlIjp7ImxvZ2luIjoicnZlcm1ldWxlbiIsIm5hbWUiOiJSZW1jbyBWZXJtZXVsZW4iLCJlbWFpbCI6bnVsbH19.KkdI3Irz_QqxZKKmdGKlxQHQfvEBU70MkTnvv2zWWI0"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

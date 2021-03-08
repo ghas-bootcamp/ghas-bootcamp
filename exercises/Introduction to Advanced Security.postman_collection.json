@@ -1,0 +1,413 @@
+{
+	"info": {
+		"_postman_id": "59007813-7eee-44d5-a581-dc270664431e",
+		"name": "Introduction to Advanced Security",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dependabot",
+			"item": [
+				{
+					"name": "Enable automatic security fixes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/vnd.github.london-preview+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/repos/:owner/:repo/automated-security-fixes",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"repos",
+								":owner",
+								":repo",
+								"automated-security-fixes"
+							],
+							"variable": [
+								{
+									"key": "owner",
+									"value": "advanced-security"
+								},
+								{
+									"key": "repo",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable automatic security fixes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.github.london-preview+json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/repos/:owner/:repo/automated-security-fixes",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"repos",
+								":owner",
+								":repo",
+								"automated-security-fixes"
+							],
+							"variable": [
+								{
+									"key": "owner",
+									"value": "advanced-security"
+								},
+								{
+									"key": "repo",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vulnerability alerts configuration status",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.github.dorian-preview+json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/repos/:owner/:repo/vulnerability-alerts",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"repos",
+								":owner",
+								":repo",
+								"vulnerability-alerts"
+							],
+							"variable": [
+								{
+									"key": "owner",
+									"value": "advanced-security"
+								},
+								{
+									"key": "repo",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable vulnerability alerts",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.github.dorian-preview+json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/repos/:owner/:repo/vulnerability-alerts",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"repos",
+								":owner",
+								":repo",
+								"vulnerability-alerts"
+							],
+							"variable": [
+								{
+									"key": "owner",
+									"value": "advanced-security"
+								},
+								{
+									"key": "repo",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disable vulnerability alerts",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.github.dorian-preview+json"
+							}
+						],
+						"url": {
+							"raw": "https://{{baseUrl}}/repos/:owner/:repo/vulnerability-alerts",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"repos",
+								":owner",
+								":repo",
+								"vulnerability-alerts"
+							],
+							"variable": [
+								{
+									"key": "owner",
+									"value": "advanced-security"
+								},
+								{
+									"key": "repo",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List vulnerability alerts",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.github.dorian-preview+json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query VulnerabilityAlerts($org: String!, $repo: String!){\n  viewer {\n    organization(login: $org) {\n      repository(name: $repo) {\n        name\n        vulnerabilityAlerts(first: 10) {\n          nodes {\n            securityVulnerability {\n              advisory {\n                ghsaId\n                description\n              }\n              package {\n                name\n                ecosystem\n              }\n              severity\n              firstPatchedVersion {\n                identifier\n              }\n              vulnerableVersionRange\n            }\n          }\n        }\n      }\n    }\n  }\n}",
+								"variables": "{\n    \"org\": \"advanced-security\",\n    \"repo\": \"octo-gallery-ghas1\"\n}"
+							}
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/graphql",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Repository schema",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.github.dorian-preview+json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n__type(name: \"Repository\") {\n  name\n  kind\n  description\n  fields {\n    name\n  }\n}\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/graphql",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Organization schema",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.github.dorian-preview+json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n__type(name: \"Organization\") {\n  name\n  kind\n  description\n  fields {\n    name\n  }\n}\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/graphql",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SecurityVulnerabilty schema",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/vnd.github.dorian-preview+json",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n__type(name: \"Organization\") {\n  name\n  kind\n  description\n  fields {\n    name\n  }\n}\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://{{baseUrl}}/graphql",
+							"protocol": "https",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{personal_access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "051d247e-8666-4a7c-a3b0-6f11609c2512",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "937d2066-a46f-4eff-b9cc-ac4b0e85c35a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "7304cbb6-a697-49e7-96bc-03a4f4f2583e",
+			"key": "baseUrl",
+			"value": "api.github.com"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,6 @@
+{
+    "host": "localhost",
+    "port": 8081,
+    "secret": "secretsecret1234secretsecret1234",
+    "database": "./galleries.db"
+}

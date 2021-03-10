@@ -24,50 +24,38 @@ Code scanning enables developers to integrate security analysis tooling into the
 
 4. Head over to the `Actions` tab to see the created workflow in action.
 
-You will notice the action failed because the Java job failed.
-
-#### Reviewing a failed analysis job
+#### Reviewing any failed analysis job
 
 CodeQL requires a build of compiled languages, and an analysis job can fail if our *autobuilder* is unable to build a program to extract an analysis database.
 
-1. Head over to the failed Java job and try to determine the build failure.
+1. Head over to the Java job and determine if there's a build failure.
 
-   **Hint**: The project is build using Maven so we can search for `Failed to execute goal` in the `Autobuild` step.
-
-2. How would you resolve the build error to ensure the analysis can be performed?
+2. Our project targets JDK version 11. How can we check the java version that the GitHub hosted runner is using?
 
 <details>
 <summary>Solution</summary>
 
-By default the Action runner is configured with JDK version 1.8, but our project targets JDK version 11.
-
-```bash
-Error: 1-05 14:30:13] [autobuild] [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile (default-compile) on project storage-service: Fatal error compiling: invalid target release: 11 -> [Help 1]
-```
+    - run: |
+        echo "java version"
+        java -version
 
 </details>
 
-#### Customizing the build process in the CodeQL workflow
+#### Using context and expressions to modify build
 
-1. Open the file `.github/workflows/codeql-analysis.yml` for editing in the GitHub repository explorer.
+How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions) the build such that the autobuild step runs only for Java?
 
-2. Add an appropiate step to configure the Java JDK.
+  <details>
+  <summary>Solution</summary>
 
-    **Hint**: Use the Action marketplace to find an action that can help you.
-3. Confirm that java analysis succeeds.
+  You can run this step for only `Java` analysis when you use the `if` expression and `matrix` context.
 
-<details>
-<summary>Solution</summary>
-
-Add the following step before the `autobuild` step.
-```yaml
-- name: Setup Java JDK
-      uses: actions/setup-java@v1.4.3
-      with:
-        java-version: 11
-```
-</details>
-
+  ```yaml
+  - if: matrix.language == 'java'  
+    uses: github/codeql-action/autobuild@v1
+  ```
+  </details>
+  
 #### Reviewing and managing results
 
 1. Go to the `Code scanning results` in the `Security` tab.
@@ -96,28 +84,11 @@ Follow the next steps to see it in action.
     ```
 2. Is the vulnerability detected in your PR?
 
-#### _Stretch Exercise 1: Using context and expressions to modify build_
-
-How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions) the build such that the Setup JDK step runs only for Java?
-
-  <details>
-  <summary>Solution</summary>
-
-  You can run this step for only `Java` analysis when you use the `if` expression and `matrix` context.
-
-  ```yaml
-  - if: matrix.language == 'java'  
-    uses: actions/setup-java@v1.4.3
-    with:
-      java-version: 11
-  ```
-  </details>
-
-#### _Stretch Exercise 2: Fixing False Positive Results_
+#### _Stretch Exercise 1: Fixing false positive results_
 
 If you have identified a false positive, how would you deal with that? What if this is a common pattern within your applications?
 
-#### _Stretch Exercise 3: Enabling code scanning on your own repository_
+#### _Stretch Exercise 2: Enabling code scanning on your own repository_
 
 So far you've learned how to enable secret scanning, Dependabot and code scanning. Try enabling this on your own repository, and see what kind of results you get!
 
@@ -207,13 +178,13 @@ from: codeql-go
 
 5. Try specifying directories to scan or not to scan. Why would you include this in the configuration?
 
-#### _Stretch Exercise 4: Adding a custom query_
+#### Understanding how to add a custom query
 
 One of the strong suites of CodeQL is its high-level language QL that can be used to write your own queries.
 _If you have experience with CodeQL and have come up with your own query so far, take this time to commit those changes and see if any alerts were produced._
 Regardless of experience, the next steps show you how to add one.
 
-1. Create the file `custom-queries/go/qlpack.yml` with the contents
+1. Make sure to create a QL pack file. For example, `custom-queries/go/qlpack.yml` with the contents
 
     ```yaml
     name: My Go queries
@@ -224,7 +195,7 @@ Regardless of experience, the next steps show you how to add one.
 
     This file creates a [QL query pack](https://help.semmle.com/codeql/codeql-cli/reference/qlpack-overview.html) used to organize query files and their dependencies.
 
-2. Create the file `custom-queries/go/jwt.ql` with the contents
+2. Then, create the actual query file. For example, `custom-queries/go/jwt.ql` with the contents
 
     ```ql
     /**
@@ -263,10 +234,44 @@ Regardless of experience, the next steps show you how to add one.
         )
     select f, "This function should be using jwt.SigningMethodHMAC"
     ```
-3. Add the query to the CodeQL configuration file `.github/codeql/codeql-config.yml`
+3. Then, add the query to the CodeQL configuration file `.github/codeql/codeql-config.yml`
 
-    **Hint** The `uses` key accepts repository relative paths.
+**Hint** The `uses` key accepts repository relative paths.
 
-4. After the code scanning action has completed, are there new security results?
+<details>
+<summary>Solution</summary>
+
+```yaml
+name: "My CodeQL config"
+
+disable-default-queries: true
+
+queries:
+    - uses: security-and-quality
+    - uses: ./custom-queries/code-scanning.qls
+    - uses: ./custom-queries/go/jwt.ql
+
+```
+</details>
+
+#### _Stretch Exercise 3: Adding a custom query from an external repository_
+
+How would you incorporate that query/queries that were written on the first day of this bootcamp?
+
+<details>
+<summary>Solution</summary>
+
+```yaml
+name: "CodeQL Config"
+
+disable-default-queries: false
+
+queries:
+  - name: go-custom-queries
+    uses: advanced-security/ghas-bootcamp-march-2021-query/go/src@main
+  - uses: security-and-quality
+```
+</details>
+
 
 💡**Looks like we've made it to the end! [Click here for additional references](api-references.md).** 💡

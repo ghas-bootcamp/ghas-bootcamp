@@ -129,7 +129,7 @@ However, you might want to change this behavior to:
 The queries that are executed is determined by the code scanning suite for a target language.
 You can create your own code scanning suite to change the set of included queries.
 
-By creating our own code scanning suite, we can exclude the rule that caused the false positive in our Java project.
+By creating our own [code scanning suite](https://codeql.github.com/docs/codeql-cli/creating-codeql-query-suites/), we can exclude the rule that caused the false positive in our Java project.
 
 1. Create the file `custom-queries/code-scanning.qls` with the contents
 

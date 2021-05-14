@@ -31,18 +31,18 @@ This can both be used for managing individual repositories at scale or export vu
 1. Determining if vulnerability alerts are enabled
 
     ```bash
-    curl --location --request GET 'https://api.github.com/repos/advanced-security/<insert your repo>/vulnerability-alerts' \
+    curl --location --request GET 'https://api.github.com/repos/<owner>/<repository>/vulnerability-alerts' \
     --header 'Accept: application/vnd.github.dorian-preview+json' \
     --header 'Authorization: Bearer <insert your PAT>'
     ```
 1. Disabling and enable security updates
 
     ```bash
-    curl --location --request DELETE 'https://api.github.com/repos/advanced-security/<insert your repo>/vulnerability-alerts' \
+    curl --location --request DELETE 'https://api.github.com/repos/<owner>/<repository>/vulnerability-alerts' \
     --header 'Accept: application/vnd.github.dorian-preview+json' \
     --header 'Authorization: Bearer <insert your PAT>'
 
-    curl --location --request PUT 'https://api.github.com/repos/advanced-security/<insert your repo>/vulnerability-alerts' \
+    curl --location --request PUT 'https://api.github.com/repos/<owner>/<repository>/vulnerability-alerts' \
     --header 'Accept: application/vnd.github.dorian-preview+json' \
     --header 'Authorization: Bearer <insert your PAT>'
     ```
@@ -119,7 +119,7 @@ query VulnerabilityAlerts($org: String!, $repo: String!){
 curl --location --request POST 'https://api.github.com/graphql' \
 --header 'Authorization: Bearer <insert your PAT>' \
 --header 'Content-Type: application/json' \
---data-raw '{"query":"query VulnerabilityAlerts($org: String!, $repo: String!){\n  viewer {\n    organization(login: $org) {\n      repository(name: $repo) {\n        name\n        vulnerabilityAlerts(first: 10) {\n          nodes {\n            securityVulnerability {\n              advisory {\n                ghsaId\n                description\n              }\n              package {\n                name\n                ecosystem\n              }\n              severity\n              firstPatchedVersion {\n                identifier\n              }\n              vulnerableVersionRange\n            }\n          }\n        }\n      }\n    }\n  }\n}","variables":{"org":"advanced-security","repo":"<insert your repo>"}}'
+--data-raw '{"query":"query VulnerabilityAlerts($org: String!, $repo: String!){\n  viewer {\n    organization(login: $org) {\n      repository(name: $repo) {\n        name\n        vulnerabilityAlerts(first: 10) {\n          nodes {\n            securityVulnerability {\n              advisory {\n                ghsaId\n                description\n              }\n              package {\n                name\n                ecosystem\n              }\n              severity\n              firstPatchedVersion {\n                identifier\n              }\n              vulnerableVersionRange\n            }\n          }\n        }\n      }\n    }\n  }\n}","variables":{"org":"<org-name>","repo":"<repository-name>"}}'
 ```
 
 </details>

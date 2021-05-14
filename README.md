@@ -11,7 +11,7 @@ To participate in the workshop you need a GitHub account and need to be invited 
 
 ```bash
 git clone https://github.com/advanced-security/ghas-bootcamp.git
-cd ghas-bootcamp-march-2021
+cd ghas-bootcamp
 git remote set-url origin https://github.com/advanced-security/ghas-bootcamp.git
 ```
 

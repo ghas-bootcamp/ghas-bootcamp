@@ -161,15 +161,15 @@ By creating our own code scanning suite, we can exclude the rule that caused the
 ```yaml
 # Reusing existing QL Pack
 - import: codeql-suites/javascript-code-scanning.qls
-    from: codeql-javascript
+  from: codeql-javascript
 - import: codeql-suites/java-code-scanning.qls
-from: codeql-java
+  from: codeql-java
 - import: codeql-suites/python-code-scanning.qls
-from: codeql-python
+  from: codeql-python
 - import: codeql-suites/go-code-scanning.qls
-from: codeql-go
+  from: codeql-go
 - exclude:
-    id:
+  id:
     - java/spring-disabled-csrf-protection
 ```
 </details>

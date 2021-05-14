@@ -256,7 +256,7 @@ queries:
 
 #### _Stretch Exercise 3: Adding a custom query from an external repository_
 
-How would you incorporate that query/queries that were written on the first day of this bootcamp?
+How would you incorporate that query/queries from other repositories?
 
 <details>
 <summary>Solution</summary>
@@ -268,7 +268,7 @@ disable-default-queries: false
 
 queries:
   - name: go-custom-queries
-    uses: advanced-security/ghas-bootcamp-march-2021-query/go/src@main
+    uses: {owner}/{repository}/<path-to-query>@<some-branch>
   - uses: security-and-quality
 ```
 </details>

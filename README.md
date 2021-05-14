@@ -10,9 +10,9 @@
 To participate in the workshop you need a GitHub account and need to be invited to the workshop organization [advanced-security](https://github.com/advanced-security). If your repository hasn't been automatically created in the workshop organization, create a new project and push a copy of the `ghas-bootcamp` project.
 
 ```bash
-git clone https://github.com/advanced-security/ghas-bootcamp.git
+git clone https://github.com/ghas-bootcamp/ghas-bootcamp.git
 cd ghas-bootcamp
-git remote set-url origin https://github.com/advanced-security/ghas-bootcamp.git
+git remote set-url origin git@github.com:{org-or-username}/{repo-name}.git
 ```
 
 ## :books: Resources

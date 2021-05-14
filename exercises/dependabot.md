@@ -66,7 +66,7 @@ Create the file `.github/dependabot.yml` in your repository and configure the `p
 
   4. Assign the PR to yourself and a person from your workshop team as a reviewer.
 
-  5. Add the custom label `triage-required` to enable filtering of the PRs (Make sure the label exists by adding it to `https://github.com/githubuniverseworkhops/<your repo>/labels`).
+  5. Add the custom label `triage-required` to enable filtering of the PRs (Make sure the label exists by adding it to `https://github.com/<owner>/<your repo>/labels`).
 
   6. Verify your changes by adding a [vulnerable dependency](https://github.com/advisories?query=severity%3Ahigh+ecosystem%3Apip) to `auth-service/requirements.txt`. For example:
 

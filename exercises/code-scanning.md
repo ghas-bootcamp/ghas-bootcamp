@@ -24,23 +24,6 @@ Code scanning enables developers to integrate security analysis tooling into the
 
 4. Head over to the `Actions` tab to see the created workflow in action.
 
-#### Reviewing any failed analysis job
-
-CodeQL requires a build of compiled languages, and an analysis job can fail if our *autobuilder* is unable to build a program to extract an analysis database.
-
-1. Head over to the Java job and determine if there's a build failure.
-
-2. Our project targets JDK version 11. How can we check the java version that the GitHub hosted runner is using?
-
-<details>
-<summary>Solution</summary>
-
-    - run: |
-        echo "java version"
-        java -version
-
-</details>
-
 #### Using context and expressions to modify build
 
 How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions) the build such that the autobuild step runs only for Java?

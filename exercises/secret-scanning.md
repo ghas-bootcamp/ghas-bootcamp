@@ -58,12 +58,19 @@ While we can close a detected secret as being used in a test, we can also config
     ```
     </details>
 
-3. Test the pattern by adding another secret or to the file `storage-service/src/main/resources/application.dev.properties`
+#### Custom patterns for secret scanning
+Secret scanning supports finding other [secret patterns](https://docs.github.com/en/code-security/secret-security/defining-custom-patterns-for-secret-scanning), which are specified by regex patterns and uses the Hyperscan library.
 
-    For example change the `secretKey` to
+1. Add a custom secret pattern by going to the Security and Analysis settings and clicking on `Add a secret scanning custom pattern`.
+2. Add a custom pattern name, a secret format and test cases.
+
+    For example:
     ```
-    AWS_SECRET_ACCESS_KEY="6L=yQr6Ivxxj/XG+YdFPdH/xWDcbSV9ch/EjmHCL"
+    Custom pattern name: My secret pattern
+    Secret format: my_custom_secret_[a-z0-9]{3}
+    Test string: my_custom_secret_123
     ```
+ 3. Save your pattern and observe the secret scanning alerts page to see if your custom secret pattern has been detected.
 
 #### Managing access to alerts
 Due to the nature of secrets, the alerts are only visible to organization and repository administrators.

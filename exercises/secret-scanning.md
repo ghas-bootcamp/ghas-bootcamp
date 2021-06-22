@@ -60,6 +60,11 @@ While we can close a detected secret as being used in a test, we can also config
 
 3. Test the pattern by adding another secret or to the file `storage-service/src/main/resources/application.dev.properties`
 
+    For example change the `secretKey` to
+    ```
+    AWS_SECRET_ACCESS_KEY="6L=yQr6Ivxxj/XG+YdFPdH/xWDcbSV9ch/EjmHCL"
+    ```
+
 #### Custom patterns for secret scanning
 Secret scanning supports finding other [secret patterns](https://docs.github.com/en/code-security/secret-security/defining-custom-patterns-for-secret-scanning), which are specified by regex patterns and uses the Hyperscan library.
 

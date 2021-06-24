@@ -50,7 +50,7 @@ After a few minutes multiple PRs will be created that will upgrade vulnerable de
 
 #### Configuring Dependabot security updates
 
-To successfully integrate the security updates into the SDLC, it is possible to configure various aspects such as:
+You can enable Dependabot [*version updates*](https://docs.github.com/en/code-security/supply-chain-security/keeping-your-dependencies-updated-automatically/enabling-and-disabling-version-updates) by checking in a dependabot.yml into your repository's `.github` directory. Dependabot security updates uses this configuration as well. To successfully integrate the security updates into the SDLC, it is possible to configure various aspects such as:
 
 - When security PRs are created.
 - What labels are assigned to enable filtering options.
@@ -104,5 +104,18 @@ updates:
       prefix: "pip"
 ```
 </details>
+    
+#### Working with Dependency Review
+    
+If a Pull Request has dependency changes, you can [review](https://docs.github.com/en/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-dependency-changes-in-a-pull-request) them and see if there are known vulnerabilities with the dependency changes.
+    
+   1. Add a vulnerable dependency to `auth-service/requirements.txt` and commit to a new branch. For example, here's a vulnerable dependency:
+
+    ```requirements.txt
+    ...
+    django-piston==0.2.0
+    ```
+   2. Create a Pull Request, and click on `Files changed`. 
+   3. Click on the `Display the rich diff` button on the `requirements.txt` file to review dependency changes.
 
 💡**Now that we're familiar with Dependabot, let's head over to the code scanning section, and learn more about it! [Click here](code-scanning.md).** 💡

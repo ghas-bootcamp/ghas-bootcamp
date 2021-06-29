@@ -158,7 +158,7 @@ By creating our own [code scanning suite](https://codeql.github.com/docs/codeql-
     - import: codeql-suites/go-code-scanning.qls
       from: codeql-go
     - exclude:
-      id:
+        id:
         - <insert rule id of false positive>
     ```
 

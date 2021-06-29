@@ -162,25 +162,42 @@ By creating our own [code scanning suite](https://codeql.github.com/docs/codeql-
         - <insert rule id of false positive>
     ```
 
-2. Configure the file `.github/codeql/codeql-config.yml` to use our suite
+2. Configure the file `.github/codeql/codeql-config.yml` to use our suite.
 
-    **Hint** We are now running both the default code scanning suite and our own custom suite.
-    To prevent double results disable the default queries with the option `disable-default-queries: true`
+    **Hint**: We are now running both the default code scanning suite and our own custom suite.
+    To prevent CodeQL from resolving queries twice, disable the default queries with the option `disable-default-queries: true`
+    
+<details>
+<summary>Solution</summary>
+
+```yaml
+name: "My CodeQL config"
+
+disable-default-queries: true
+
+queries:
+    - uses: ./custom-queries/code-scanning.qls
+```
+</details>
 
 3. After the code scanning action has completed, is the false positive still there?
+
+4. Try running additional queries with `security-extended` or `security-and-quality`. What kind of results do you see?
+
+**Note**: If you want to use these additional query suites and the custom query suite you've made, make sure to import the proper query packs to continue to exclude certain queries.
 
 <details>
 <summary>Solution</summary>
 
 ```yaml
 # Reusing existing QL Pack
-- import: codeql-suites/javascript-code-scanning.qls
+- import: codeql-suites/javascript-security-and-quality.qls
   from: codeql-javascript
-- import: codeql-suites/java-code-scanning.qls
+- import: codeql-suites/java-security-and-quality.qls
   from: codeql-java
-- import: codeql-suites/python-code-scanning.qls
+- import: codeql-suites/python-security-and-quality.qls
   from: codeql-python
-- import: codeql-suites/go-code-scanning.qls
+- import: codeql-suites/go-security-and-quality.qls
   from: codeql-go
 - exclude:
   id:
@@ -188,9 +205,23 @@ By creating our own [code scanning suite](https://codeql.github.com/docs/codeql-
 ```
 </details>
 
-4. Try running additional queries with `security-extended` or `security-and-quality`. What kind of results do you see?
-
 5. Try specifying directories to scan or not to scan. Why would you include this in the configuration?
+
+<details>
+<summary>Solution</summary>
+
+```yaml
+name: "My CodeQL config"
+
+disable-default-queries: true
+
+queries:
+    - uses: ./custom-queries/code-scanning.qls
+
+paths-ignore: 
+ - '**/test/**'
+```
+</details>
 
 #### Understanding how to add a custom query
 
@@ -201,7 +232,7 @@ Regardless of experience, the next steps show you how to add one.
 1. Make sure to create a QL pack file. For example, `custom-queries/go/qlpack.yml` with the contents
 
     ```yaml
-    name: My Go queries
+    name: my-go-queries
     version: 0.0.0
     libraryPathDependencies:
         - codeql-go

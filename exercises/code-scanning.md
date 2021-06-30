@@ -361,7 +361,7 @@ By looking at the logs, where does CodeQL output the CodeQL databases, and simil
         CODEQL_PATH: /opt/hostedtoolcache/CodeQL/<codeql-bundle-name>/x64/codeql/codeql
       run: |
         CODEQL_DATABASE="/home/runner/work/_temp/codeql_databases/$LANGUAGE"
-        CODEQL_ZIP_OUTPUT: codeql-database-$LANGUAGE.zip
+        CODEQL_ZIP_OUTPUT="codeql-database-$LANGUAGE.zip"
         
         $CODEQL_PATH database bundle $CODEQL_DATABASE --output=$CODEQL_ZIP_OUTPUT
         echo "::set-output name=zip::$CODEQL_ZIP_OUTPUT"

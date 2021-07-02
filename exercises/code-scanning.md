@@ -318,5 +318,89 @@ queries:
 ```
 </details>
 
+#### _Stretch Exercise 4a: Uploading the SARIF as a workflow artifact_
+    
+The output of the `github/codeql-action/analyze@v1` is a SARIF. You may want to obtain this when you want to look into the SARIF directly on your local machine and/or view it in SARIF viewer tool outside of GitHub. What action should we use to upload the SARIF as an artifact?
+<details>
+<summary>Solution</summary>
+
+```yaml 
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+      with:
+        output: code-scanning-results
+
+    - name: Upload SARIF as a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: sarif
+        path: code-scanning-results
+        retention-days: 7
+```
+</details>
+    
+#### _Stretch Exercise 4b: Uploading CodeQL databases as workflow artifacts_
+    
+By looking at the logs, where does CodeQL output the CodeQL databases, and similar to the previous exercise, how do we upload this? Furthermore, you'll be able to tell where the CodeQL binary lives as well, so you can pull the path to the CodeQL binary on the GitHub hosted runner into the Actions workflow.
+    
+
+**Hints**
+- [How to set outputs of a step](https://github.com/actions/toolkit/blob/main/docs/commands.md)
+- [CodeQL version in ubuntu-latest GitHub hosted runner](https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md#tools)
+- [CodeQL CLI Reference](https://codeql.github.com/docs/codeql-cli/manual/)
+  - [codeql database bundle](https://codeql.github.com/docs/codeql-cli/manual/database-bundle/)
+
+<details>
+<summary>Solutions</summary>
+
+```yaml 
+    - name: Upload CodeQL database
+      id: codeql-database-bundle
+      env:
+        LANGUAGE: ${{ matrix.language }}
+        CODEQL_PATH: /opt/hostedtoolcache/CodeQL/<codeql-bundle-name>/x64/codeql/codeql
+      run: |
+        CODEQL_DATABASE="/home/runner/work/_temp/codeql_databases/$LANGUAGE"
+        CODEQL_ZIP_OUTPUT="codeql-database-$LANGUAGE.zip"
+        
+        $CODEQL_PATH database bundle $CODEQL_DATABASE --output=$CODEQL_ZIP_OUTPUT
+        echo "::set-output name=zip::$CODEQL_ZIP_OUTPUT"
+
+    - name: Upload CodeQL database
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.language }}-db
+        path: ${{ steps.codeql-database-bundle.outputs.zip }}
+```
+
+The solution above shows how to use the CLI to zip a CodeQL database. GitHub hosted runners are regularly updated, so be aware of the CodeQL bundle version you're using.
+Here's another way of uploading a CodeQL database without using the `codeql database bundle` command:
+
+```yaml
+    - name: Upload CodeQL database
+      id: codeql-database-bundle
+      env:
+        LANGUAGE: ${{ matrix.language }}
+      run: |
+        set -xu
+        CODEQL_DATABASE="/home/runner/work/_temp/codeql_databases/$LANGUAGE"
+
+        for SUB_DIR in log results working; do
+          rm -rf $DATABASE_DIR/$SUB_DIR
+        done
+        
+        CODEQL_DATABASE_ZIP="codeql-database-$LANGUAGE.zip"
+        zip -r "$CODEQL_DATABASE_ZIP" "$CODEQL_DATABASE"
+
+        echo "::set-output name=zip::$CODEQL_DATABASE_ZIP"
+
+    - name: Upload CodeQL database
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.language }}-db
+        path: ${{ steps.codeql-database-bundle.outputs.zip }}
+
+```
+</details>
 
 💡**Looks like we've made it to the end! [Click here for additional references](api-references.md).** 💡

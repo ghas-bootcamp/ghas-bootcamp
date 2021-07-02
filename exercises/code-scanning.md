@@ -320,7 +320,7 @@ queries:
 
 #### _Stretch Exercise 4a: Uploading the SARIF as a workflow artifact_
     
-The output of the `github/codeql-action/analyze@v1` is a SARIF. What action should we use to upload the SARIF as an artifact?
+The output of the `github/codeql-action/analyze@v1` is a SARIF. You may want to obtain this when you want to look into the SARIF directly on your local machine and/or view it in SARIF viewer tool outside of GitHub. What action should we use to upload the SARIF as an artifact?
 <details>
 <summary>Solution</summary>
 

@@ -341,7 +341,7 @@ The output of the `github/codeql-action/analyze@v1` is a SARIF. You may want to 
     
 #### _Stretch Exercise 4b: Uploading CodeQL databases as workflow artifacts_
     
-By looking at the logs, where does CodeQL output the CodeQL databases, and similar to the previous exercise, how do we upload this?
+By looking at the logs, where does CodeQL output the CodeQL databases, and similar to the previous exercise, how do we upload this? Furthermore, you'll be able to tell where the CodeQL binary lives as well, so you can pull the path to the CodeQL binary on the GitHub hosted runner into the Actions workflow.
     
 
 **Hints**

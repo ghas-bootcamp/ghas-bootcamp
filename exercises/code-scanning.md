@@ -377,7 +377,7 @@ The solution above shows how to use the CLI to zip a CodeQL database. GitHub hos
 Here's another way of uploading a CodeQL database without using the `codeql database bundle` command:
 
 ```yaml
-    - name: Upload CodeQL database
+    - name: Zip CodeQL database
       id: codeql-database-bundle
       env:
         LANGUAGE: ${{ matrix.language }}

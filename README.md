@@ -7,7 +7,7 @@
 > This bootcamp is designed to get you familiar with GitHub Advanced Security (GHAS) so that you can better understand how to use it in your own repositories.
 
 ## :mega: Prerequisites
-To participate in the workshop you need a GitHub account and need to be invited to the workshop organization [ghas-bootcamp](https://github.com/ghas-bootcamp). If your repository hasn't been automatically created in the workshop organization, create a new project and push a copy of the `ghas-bootcamp` project.
+To participate in the workshop you need a GitHub account and need to be invited to the workshop organization [ghas-bootcamp](https://github.com/ghas-bootcamp). If your repository hasn't been automatically created in the workshop organization, either click `Use this template` and create a repository under this organization, or create a new repository and push a copy of the `ghas-bootcamp` repository.
 
 ```bash
 git clone https://github.com/ghas-bootcamp/ghas-bootcamp.git

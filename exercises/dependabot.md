@@ -118,4 +118,4 @@ If a Pull Request has dependency changes, you can [review](https://docs.github.c
    2. Create a Pull Request, and click on `Files changed`. 
    3. Click on the `Display the rich diff` button on the `requirements.txt` file to review dependency changes.
 
-💡**Now that we're familiar with Dependabot, let's head over to the code scanning section, and learn more about it! [Click here](code-scanning.md).** 💡
+💡**Now that we're familiar with Dependabot, let's head over to the secret scanning section, and learn more about it! [Click here](secret-scanning.md).** 💡

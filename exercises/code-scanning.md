@@ -384,6 +384,7 @@ Here's another way of uploading a CodeQL database without using the `codeql data
       run: |
         set -xu
         CODEQL_DATABASE="/home/runner/work/_temp/codeql_databases/$LANGUAGE"
+        DATABASE_DIR="/home/runner/work/_temp/codeql_databases"
 
         for SUB_DIR in log results working; do
           rm -rf $DATABASE_DIR/$SUB_DIR

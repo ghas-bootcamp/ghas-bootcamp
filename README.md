@@ -15,6 +15,60 @@ cd ghas-bootcamp
 git remote set-url origin git@github.com:{org-or-username}/{repo-name}.git
 ```
 
+## 🏫 Agenda
+
+We will go over the following topics:
+
+<details>
+<summary>Day One </summary>
+
+#### Day One Learning
+- [x] Comphrenhensive overview of GHAS
+- [x] Securing your supply chain with Dependency management
+- [x] Secret scanning
+- [x] Rolling out GHAS in your organization
+- [x] Q&A
+
+#### Day One: Secret Scanning and Dependabot Exercises
+##### Secret scanning
+- [x] Enabling secret scanning
+- [x] Viewing and managing results
+- [x] Excluding files from secret scanning
+- [x] Custom patterns for secret scanning
+- [x] Managing access to alerts
+
+##### Dependabot
+- [x] Enabling Dependabot alerts
+- [x] Reviewing the dependency graph
+- [x] Viewing and managing results
+- [x] Enabling Dependabot security updates
+- [x] Configuring Dependabot security updates
+- [x] Working with Dependency Review
+</details>
+
+<details>
+<summary>Day Two </summary>
+
+#### Day Two Learning
+- [x] Explore how code scanning works
+- [x] What is Security Overview?
+- [x] CodeQL Demo
+- [x] Final Q&A
+
+#### Day Two: Code Scanning + CodeQL Demo
+##### Code scanning
+- [x] Enabling code scanning
+- [x] Reviewing any failed analysis job
+- [x] Using context and expressions to modify build
+- [x] Reviewing and managing results
+- [x] Triaging a result in a PR
+- [x] Customizing CodeQL Configuration
+- [x] Adding your own code scanning suite to exclude rules
+- [x] Understanding how to add a custom query
+- [x] CodeQL Demo
+
+</details>
+
 ## :books: Resources
 - [About code scanning](https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning)
 - [About dependency scanning](https://docs.github.com/en/free-pro-team@latest/github/managing-security-vulnerabilities/about-alerts-for-vulnerable-dependencies)

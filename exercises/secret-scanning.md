@@ -41,7 +41,7 @@ While we can close a detected secret as being used in a test, we can also config
 2. Add a list of paths to exclude from secret scanning. You can use [filter patterns](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet) to specify paths.
     ```yaml
     paths-ignore:
-        - '**/test'
+        - '**/test/**'
     ```
     **Note**: The characters `*`, `[`, and `!` are special characters in YAML. If you start a pattern with `*`, `[`, or `!`, you must enclose the pattern in quotes.
 

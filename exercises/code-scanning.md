@@ -5,8 +5,8 @@ Code scanning enables developers to integrate security analysis tooling into the
 ### Contents
 
 - [Enabling code-scanning](#enabling-code-scanning)
-- [Reviewing a failed analysis job](#reviewing-a-failed-analysis-job)
-- [Customizing the build process in the CodeQL workflow](#customizing-the-build-process-in-the-codeql-workflow)
+- [Reviewing any failed analysis job](#reviewing-any-failed-analysis-job)
+- [Using context and expressions to modify build](#using-context-and-expressions-to-modify-build)
 - [Reviewing and managing results](#reviewing-and-managing-results)
 - [Triaging a result in a PR](#triaging-a-result-in-a-pr)
 - [Customizing CodeQL configuration](#customizing-codeql-configuration)
@@ -20,39 +20,42 @@ Code scanning enables developers to integrate security analysis tooling into the
 
 2. Start the `Set up this workflow` step in the `CodeQL Analysis` card.
 
-3. Review the created Action workflow and accept the default proposed workflow.
+3. Review the created Action workflow file `codeql-analysis.yml` and choose `Start commit` to accept the default proposed workflow.
 
-4. Head over to the `Actions` tab to see the created workflow in action.
+4. Head over to the `Actions` tab to see the created workflow in action. Click on the workflow to view details and status for each analysis job.
 
 
 #### Reviewing any failed analysis job
 
 CodeQL requires a build of compiled languages, and an analysis job can fail if our *autobuilder* is unable to build a program to extract an analysis database.
 
-1. Head over to the Java job and determine if there's a build failure.
+1. Inside the workflow you'll see a list of jobs on the left.  Click on the Java job to view the logging output and review any errors to determine if there's a build failure.
 
-2. Our project targets JDK version 15. How can we check the java version that the GitHub hosted runner is using?
-
-<details>
-<summary>Solution</summary>
-
+2. The build failure appears to be caused by a JDK version mismatch. Our project targets JDK version 15. How can we check the Java version that the GitHub hosted runner is using? Does the logging output provide any helpful information?
+    
+    <details>
+    <summary>Solution</summary>
+    
+    - GitHub saves workflow files in the `.github/workflows` directory of your repository. You can add a command to the workflow that returns the Java version.
+    
+    ```yaml
     - run: |
         echo "java version"
         java -version
+    ```
+    
+    </details>
 
-</details>
+3. Resolve the JDK version issue by using the `setup-java` Action to specify a version.
 
-3. Resolve the JDK version issue by using the `setup-java` Action.
+    <details>
+    <summary>Solution</summary>
 
+        uses: actions/setup-java@v1
+        with:
+            java-version: 15
 
-<details>
-<summary>Solution</summary>
-
-      uses: actions/setup-java@v1
-      with:
-        java-version: 15
-
-</details>
+    </details>
 
 
 #### Using context and expressions to modify build

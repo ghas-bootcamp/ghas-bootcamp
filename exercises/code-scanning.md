@@ -462,4 +462,6 @@ jobs:
 ```
 </details>
 
-💡**Looks like we've made it to the end! [Click here for additional references](api-references.md).** 💡
+💡**Looks like we've made it to the end!** 💡
+- [Click here to learn more about using the CodeQL CLI](codeql-cli.md)
+- [Click here for additional references](api-references.md)

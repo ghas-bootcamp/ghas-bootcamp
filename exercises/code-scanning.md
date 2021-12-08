@@ -406,5 +406,60 @@ Here's another way of uploading a CodeQL database without using the `codeql data
 
 ```
 </details>
+    
+#### _Full CodeQL Analysis Workflow_
+<details>
+<summary>Solution</summary>
+
+```yaml
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '18 10 * * 5'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'go', 'java', 'javascript', 'python' ]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+        config-file: ./.github/codeql/codeql-config.yml
+
+    - if: matrix.language == 'java' 
+      name: Setup Java
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '15'
+
+    - if: matrix.language == 'java' 
+      name: Autobuild
+      uses: github/codeql-action/autobuild@v1
+  
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
+```
+</details>
 
 💡**Looks like we've made it to the end! [Click here for additional references](api-references.md).** 💡

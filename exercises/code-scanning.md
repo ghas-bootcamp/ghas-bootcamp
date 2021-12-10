@@ -249,7 +249,7 @@ Regardless of experience, the next steps show you how to add one.
     /**
     * @name Missing token verification
     * @description Missing token verification
-    * @id go/user-controlled-bypass
+    * @id go/jwt-sign-check
     * @kind problem
     * @problem.severity warning
     * @precision high

@@ -68,7 +68,7 @@ While we can close a detected secret as being used in a test, we can also config
 #### Custom patterns for secret scanning
 Secret scanning supports finding other [secret patterns](https://docs.github.com/en/code-security/secret-security/defining-custom-patterns-for-secret-scanning), which are specified by regex patterns and uses the Hyperscan library.
 
-1. Add a custom secret pattern by going to the Security and Analysis settings and clicking on `Add a secret scanning custom pattern`.
+1. Add a custom secret pattern by going to the Security and Analysis settings and under the header "Custom patterns" click on `New pattern`.
 2. Add a custom pattern name, a secret format and test cases.
 
     For example:

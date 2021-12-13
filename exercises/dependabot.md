@@ -13,7 +13,7 @@
 #### Enabling Dependabot alerts
 Dependabot can be enabled in the settings of an organization or a repository.
 
-1. Go to the repository settings and enable Dependabot alerts in the *Security & analysis* section.
+1. Go to the repository settings and enable Dependabot alerts in the *Security & analysis* section. You will be prompted to enable the Dependency Graph if it's not enabled already.
 
 #### Reviewing the dependency graph
 Dependabot uses the dependency graph to determine which dependencies are used by your project.
@@ -28,7 +28,7 @@ The dependency graph can be access in the `Insights` tab in your repository.
 
 #### Viewing and managing results
 
-After a few minutes, the security tab in the repository will indicate that there are new security alerts.
+After a few minutes, the security tab in the repository will indicate that there are new security alerts. You will see a "Create a security update" button; if this button is clicked, it will create a Pull Request to update the vulnerable dependency. The next section will show you how to enable security updates for all applicable Dependabot alerts.
 
 **Note**: If this not the case, we can trigger an analysis by updating `authn-service/requirements.txt`
 

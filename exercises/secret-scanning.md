@@ -85,8 +85,7 @@ Access to other members and teams can be given in the `Security & analysis` sett
 
 **Note:** The member or teams requires write privileges before access to alerts can be given.
 
-1. To enable this functionality, we have to enable Dependabot alerts.
-2. In the access to alerts section, add another team member or team to provide access to your repository alerts.
+1. In the access to alerts section, add another team member or team to provide access to your repository alerts.
 
 
 💡**Now that we're familiar with secret scanning, let's head over to the code scanning section, and learn more about it! [Click here](code-scanning.md).** 💡

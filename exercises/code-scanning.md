@@ -12,7 +12,7 @@ Code scanning enables developers to integrate security analysis tooling into the
 - [Customizing CodeQL configuration](#customizing-codeql-configuration)
 - [Adding your own code scanning suite to exclude rules](#adding-your-own-code-scanning-suite-to-exclude-rules)
 
-### _**Practical Exercise 2**_
+### _**Practical Exercise 3**_
 
 #### Enabling code scanning
 
@@ -32,18 +32,18 @@ CodeQL requires a build of compiled languages, and an analysis job can fail if o
 1. Inside the workflow you'll see a list of jobs on the left.  Click on the Java job to view the logging output and review any errors to determine if there's a build failure.
 
 2. The build failure appears to be caused by a JDK version mismatch. Our project targets JDK version 15. How can we check the Java version that the GitHub hosted runner is using? Does the logging output provide any helpful information?
-    
+
     <details>
     <summary>Solution</summary>
-    
+
     - GitHub saves workflow files in the `.github/workflows` directory of your repository. You can add a command to the workflow that returns the Java version.
-    
+
     ```yaml
     - run: |
         echo "java version"
         java -version
     ```
-    
+
     </details>
 
 3. Resolve the JDK version issue by using the `setup-java` Action to specify a version.
@@ -72,7 +72,7 @@ How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/r
     uses: github/codeql-action/autobuild@v1
   ```
   </details>
-  
+
 #### Reviewing and managing results
 
 1. Go to the `Code scanning results` in the `Security` tab.
@@ -101,6 +101,8 @@ Follow the next steps to see it in action.
     ```
 2. Is the vulnerability detected in your PR?
 
+3. You can also configure the check failures for Code Scanning. Go into the `Security & Analysis` settings and modify the Check Failures. Set it to `Only critical/ Only errors` and see how that affects the code scanning status check for subsequent PR checks. In the next steps, you will be enabling additional query suites that have other severity types.
+
 #### _Stretch Exercise 1: Fixing false positive results_
 
 If you have identified a false positive, how would you deal with that? What if this is a common pattern within your applications?
@@ -109,7 +111,7 @@ If you have identified a false positive, how would you deal with that? What if t
 
 So far you've learned how to enable secret scanning, Dependabot and code scanning. Try enabling this on your own repository, and see what kind of results you get!
 
-### _**Practical Exercise 3**_
+### _**Practical Exercise 4**_
 
 #### Customizing CodeQL Configuration
 
@@ -169,7 +171,7 @@ By creating our own [code scanning suite](https://codeql.github.com/docs/codeql-
 
     **Hint**: We are now running both the default code scanning suite and our own custom suite.
     To prevent CodeQL from resolving queries twice, disable the default queries with the option `disable-default-queries: true`
-    
+
 <details>
 <summary>Solution</summary>
 
@@ -221,7 +223,7 @@ disable-default-queries: true
 queries:
     - uses: ./custom-queries/code-scanning.qls
 
-paths-ignore: 
+paths-ignore:
  - '**/test/**'
 ```
 </details>
@@ -321,13 +323,13 @@ queries:
 ```
 </details>
 
-#### _Stretch Exercise 4a: Uploading the SARIF as a workflow artifact_
-    
+#### _Stretch Exercise 3a: Uploading the SARIF as a workflow artifact_
+
 The output of the `github/codeql-action/analyze@v1` is a SARIF. You may want to obtain this when you want to look into the SARIF directly on your local machine and/or view it in SARIF viewer tool outside of GitHub. What action should we use to upload the SARIF as an artifact?
 <details>
 <summary>Solution</summary>
 
-```yaml 
+```yaml
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
       with:
@@ -341,11 +343,11 @@ The output of the `github/codeql-action/analyze@v1` is a SARIF. You may want to 
         retention-days: 7
 ```
 </details>
-    
-#### _Stretch Exercise 4b: Uploading CodeQL databases as workflow artifacts_
-    
+
+#### _Stretch Exercise 3b: Uploading CodeQL databases as workflow artifacts_
+
 By looking at the logs, where does CodeQL output the CodeQL databases, and similar to the previous exercise, how do we upload this? Furthermore, you'll be able to tell where the CodeQL binary lives as well, so you can pull the path to the CodeQL binary on the GitHub hosted runner into the Actions workflow.
-    
+
 
 **Hints**
 - [How to set outputs of a step](https://github.com/actions/toolkit/blob/main/docs/commands.md)
@@ -356,7 +358,7 @@ By looking at the logs, where does CodeQL output the CodeQL databases, and simil
 <details>
 <summary>Solutions</summary>
 
-```yaml 
+```yaml
     - name: Upload CodeQL database
       id: codeql-database-bundle
       env:
@@ -365,7 +367,7 @@ By looking at the logs, where does CodeQL output the CodeQL databases, and simil
       run: |
         CODEQL_DATABASE="/home/runner/work/_temp/codeql_databases/$LANGUAGE"
         CODEQL_ZIP_OUTPUT="codeql-database-$LANGUAGE.zip"
-        
+
         $CODEQL_PATH database bundle $CODEQL_DATABASE --output=$CODEQL_ZIP_OUTPUT
         echo "::set-output name=zip::$CODEQL_ZIP_OUTPUT"
 
@@ -392,7 +394,7 @@ Here's another way of uploading a CodeQL database without using the `codeql data
         for SUB_DIR in log results working; do
           rm -rf $DATABASE_DIR/$SUB_DIR
         done
-        
+
         CODEQL_DATABASE_ZIP="codeql-database-$LANGUAGE.zip"
         zip -r "$CODEQL_DATABASE_ZIP" "$CODEQL_DATABASE"
 
@@ -406,7 +408,7 @@ Here's another way of uploading a CodeQL database without using the `codeql data
 
 ```
 </details>
-    
+
 #### _Full CodeQL Analysis Workflow_
 <details>
 <summary>Solution</summary>
@@ -446,17 +448,17 @@ jobs:
         languages: ${{ matrix.language }}
         config-file: ./.github/codeql/codeql-config.yml
 
-    - if: matrix.language == 'java' 
+    - if: matrix.language == 'java'
       name: Setup Java
       uses: actions/setup-java@v2
       with:
         distribution: 'adopt'
         java-version: '15'
 
-    - if: matrix.language == 'java' 
+    - if: matrix.language == 'java'
       name: Autobuild
       uses: github/codeql-action/autobuild@v1
-  
+
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
 ```

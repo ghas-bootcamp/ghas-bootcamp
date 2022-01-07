@@ -8,7 +8,7 @@
 - [Excluding files from secret scanning](#excluding-files-from-secret-scanning)
 - [Managing access to alerts](#managing-access-to-alerts)
 
-### _**Practical Exercise 1a**_
+### _**Practical Exercise 2**_
 
 #### Enabling secret scanning
 Secret scanning can be enabled in the settings of an organization or a repository.

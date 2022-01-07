@@ -8,7 +8,7 @@
 - [Enabling Dependabot security updates](#enabling-dependabot-security-updates)
 - [Configuring Dependabot security updates](#configuring-dependabot-security-updates)
 
-### _**Practical Exercise 1b**_
+### _**Practical Exercise 1**_
 
 #### Enabling Dependabot alerts
 Dependabot can be enabled in the settings of an organization or a repository.
@@ -42,7 +42,7 @@ For each dependency alert, we have the option to create a security update or to 
 
 #### Enabling Dependabot security updates
 
-Dependabot can automatically create PRs to upgrade vulnerable dependencies to non-vulnerable versions.
+Dependabot can automatically create PRs to upgrade vulnerable dependencies to non-vulnerable versions. Please note that there may be some Dependabot alerts that don't have patch; therefore, a security update is not available.
 
 1. Go to the repository settings and enable Dependabot security updates in the *Security & analysis* section.
 
@@ -64,7 +64,7 @@ Create the file `.github/dependabot.yml` in your repository and configure the `p
 
   3. Prefix the commit message with the package manager `pip`.
 
-  4. Assign the PR to yourself and a person from your workshop team as a reviewer.
+  4. Assign the PR to yourself and a person from your workshop team as a reviewer. When specifying GitHub handles in the yml, do so without the `@` symbol. Please see below solution as an example.
 
   5. Add the custom label `triage-required` to enable filtering of the PRs (Make sure the label exists by adding it to `https://github.com/<owner>/<your repo>/labels`).
 
@@ -97,25 +97,25 @@ updates:
     labels:
       - "triage-required"
     assignees:
-      - "<github handle>"
+      - "dungeonstechlead"
     reviewers:
-      - "<github handle>"
+      - "dragonsengineer"
     commit-message:
       prefix: "pip"
 ```
 </details>
-    
+
 #### Working with Dependency Review
-    
+
 If a Pull Request has dependency changes, you can [review](https://docs.github.com/en/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-dependency-changes-in-a-pull-request) them and see if there are known vulnerabilities with the dependency changes.
-    
+
    1. Add a vulnerable dependency to `auth-service/requirements.txt` and commit to a new branch. For example, here's a vulnerable dependency:
 
     ```requirements.txt
     ...
     django-piston==0.2.0
     ```
-   2. Create a Pull Request, and click on `Files changed`. 
+   2. Create a Pull Request, and click on `Files changed`.
    3. Click on the `Display the rich diff` button on the `requirements.txt` file to review dependency changes.
 
 💡**Now that we're familiar with Dependabot, let's head over to the secret scanning section, and learn more about it! [Click here](secret-scanning.md).** 💡

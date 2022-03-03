@@ -23,7 +23,7 @@ We will go over the following topics:
 <summary>Day One </summary>
 
 #### Day One Learning
-- [x] Comphrenhensive overview of GHAS
+- [x] Comprenhensive overview of GHAS
 - [x] Securing your supply chain with Dependency management
 - [x] Secret scanning
 - [x] Rolling out GHAS in your organization

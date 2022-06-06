@@ -30,7 +30,7 @@ We will go over the following topics:
 - [x] Q&A
 
 #### Day one: Dependabot and Secret scanning exercises
-##### Dependabot
+##### Dependabot: [link](lab%201%20-%20dependabot.md)
 - [x] Enabling Dependabot alerts
 - [x] Reviewing the dependency graph
 - [x] Viewing and managing results
@@ -38,7 +38,7 @@ We will go over the following topics:
 - [x] Configuring Dependabot security updates
 - [x] Working with Dependency Review
 
-##### Secret scanning
+##### Secret scanning: [link](lab%202%20-%20secret-scanning.md)
 - [x] Enabling secret scanning
 - [x] Viewing and managing results
 - [x] Excluding files from secret scanning
@@ -57,7 +57,7 @@ We will go over the following topics:
 - [x] Final Q&A
 
 #### Day Two: Code scanning + CodeQL demo
-##### Code scanning
+##### Code scanning: [link](lab%203%20-%20code-scanning.md)
 - [x] Enabling code scanning
 - [x] Reviewing any failed analysis jobs
 - [x] Using context and expressions to modify build

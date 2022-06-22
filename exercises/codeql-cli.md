@@ -3,7 +3,7 @@
 When you want to generate a CodeQL database locally and run the pre-compiled queries against it, this is the way to go.
 
 First let's download the CodeQL bundle! Head over [here](https://github.com/github/codeql-action/releases ) and download the approprate bundle for your operating system.
-Once it's downloaded, untar the content to a CodeQL home folder and you can add CodeQL to your path if you'd like
+Once it's downloaded, untar the content to a CodeQL home folder and you can add CodeQL to your path if you'd like (or use Brew install for this)
 
 ```
 export PATH="/Documents/codeql-home/codeql:$PATH"

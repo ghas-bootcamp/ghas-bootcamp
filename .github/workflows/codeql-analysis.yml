@@ -51,7 +51,13 @@ jobs:
         
         # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
         # queries: security-extended,security-and-quality
-
+        
+      
+    - name: Setup JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 15
+    
     - run: |
         echo "java version"
         java -version

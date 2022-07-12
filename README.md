@@ -90,3 +90,8 @@ https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerab
 - [GraphQL API](https://docs.github.com/en/free-pro-team@latest/graphql)
   - [RepositoryVulnerabilityAlert](https://docs.github.com/en/free-pro-team@latest/graphql/reference/objects#repositoryvulnerabilityalert)
 - [REST API](https://docs.github.com/en/free-pro-team@latest/rest)
+
+
+
+AWS_ACCESS_KEY_ID="AKIAZBQE345LKPTEAHQD"
+AWS_SECRET_ACCESS_KEY="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"

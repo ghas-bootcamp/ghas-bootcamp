@@ -51,7 +51,7 @@ CodeQL requires a build of compiled languages, and an analysis job can fail if o
     <details>
     <summary>Solution</summary>
 
-        uses: actions/setup-java@v3.4.1
+        uses: actions/setup-java@v3
         with:
             java-version: 16
             distribution: 'microsoft'

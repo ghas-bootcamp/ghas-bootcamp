@@ -13,7 +13,7 @@
 #### Enabling Dependabot alerts
 Dependabot can be enabled in the settings of an organization or a repository.
 
-- Go to the repository settings and enable Dependabot alerts in the *Code security & analysis* section. You will be prompted to enable the dependency graph if it's not enabled already.
+- Go to the repository settings and enable Dependabot alerts in the `Code security and analysis` section. You will be prompted to enable the dependency graph if it's not enabled already.
 
 #### Reviewing the dependency graph
 Dependabot uses the dependency graph to determine which dependencies are used by your project.

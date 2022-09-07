@@ -73,7 +73,7 @@ How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/r
 
 #### Reviewing and managing results
 
-1. Go to the `Code scanning results` in the `Security` tab.
+1. On the `Security` tab, view the `Code scanning alerts`.
 
 2. For a result, determine:
     1. The issue reported.
@@ -99,7 +99,7 @@ Follow the next steps to see it in action.
     ```
 2. Is the vulnerability detected in your PR?
 
-3. You can also configure the check failures for Code Scanning. Go into the `Security & Analysis` settings and modify the Check Failures. Set it to `Only critical/ Only errors` and see how that affects the code scanning status check for subsequent PR checks. In the next steps, you will be enabling additional query suites that have other severity types.
+3. You can also configure the check failures for code scanning. Go into the `Code security and analysis` settings and modify the Check Failures. Set it to `Only critical/ Only errors` and see how that affects the code scanning status check for subsequent PR checks. In the next steps, you will be enabling additional query suites that have other severity types.
 
 #### _Stretch Exercise 1: Fixing false positive results_
 
@@ -107,9 +107,9 @@ If you have identified a false positive, how would you deal with that? What if t
 
 #### _Stretch Exercise 2: Enabling code scanning on your own repository_
 
-So far you've learned how to enable secret scanning, Dependabot and code scanning. Try enabling this on your own repository, and see what kind of results you get!
+So far you've learned how to enable Dependabot, secret scanning, and code scanning. Try enabling this on your own repository, and see what kind of results you get!
 
-### _**Practical Exercise 4**_
+### _**Lab 4**_
 
 #### Customizing CodeQL Configuration
 

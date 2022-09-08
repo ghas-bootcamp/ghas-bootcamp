@@ -211,7 +211,7 @@ queries:
 ```
 </details>
 
-5. Try specifying directories to scan or not to scan. Why would you include this in the configuration?
+5. Try specifying directories to scan or not to scan. Note that this is only supported for interpreted languages, such as javascript/typescript, python, ruby, etc. Why would you include this in the configuration?
 
 <details>
 <summary>Solution</summary>

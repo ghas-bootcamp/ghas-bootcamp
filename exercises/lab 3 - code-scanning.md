@@ -49,13 +49,14 @@ CodeQL requires a build of compiled languages. An analysis job can fail if our *
     <details>
     <summary>Solution</summary>
 
+    ```yaml
       - name: Setup Java JDK
         uses: actions/setup-java@v2.2.0
         if: matrix.language == 'java'
         with:
           java-version: 15
           distribution: 'zulu'
-
+    ```
     </details>
 
 

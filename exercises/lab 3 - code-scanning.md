@@ -4,7 +4,7 @@ Code scanning enables developers to integrate security analysis tooling into the
 
 ### Contents
 
-- [Enabling code-scanning](#enabling-code-scanning)
+- [Enabling code scanning](#enabling-code-scanning)
 - [Reviewing any failed analysis job](#reviewing-any-failed-analysis-job)
 - [Using context and expressions to modify build](#using-context-and-expressions-to-modify-build)
 - [Reviewing and managing results](#reviewing-and-managing-results)
@@ -12,24 +12,22 @@ Code scanning enables developers to integrate security analysis tooling into the
 - [Customizing CodeQL configuration](#customizing-codeql-configuration)
 - [Adding your own code scanning suite to exclude rules](#adding-your-own-code-scanning-suite-to-exclude-rules)
 
-### _**Practical Exercise 3**_
+### _**Lab 3**_
 
 #### Enabling code scanning
 
-1. Go to the `Code scanning alerts` section in the `Security` tab.
+1. On the `Security` tab, in the **Vulnerability alerts** section, click **Code scanning**, and then click the **Configure CodeQL alerts** button. 
 
-2. Start the `Set up this workflow` step in the `CodeQL Analysis` card.
+2. Review the created Action workflow file `codeql-analysis.yml` and choose `Start commit` to accept the default proposed workflow.
 
-3. Review the created Action workflow file `codeql-analysis.yml` and choose `Start commit` to accept the default proposed workflow.
-
-4. Head over to the `Actions` tab to see the created workflow in action. Click on the workflow to view details and status for each analysis job.
+3. Head over to the `Actions` tab to see the created workflow in action. Click on the workflow to view details and status for each analysis job.
 
 
 #### Reviewing any failed analysis job
 
-CodeQL requires a build of compiled languages, and an analysis job can fail if our *autobuilder* is unable to build a program to extract an analysis database.
+CodeQL requires a build of compiled languages. An analysis job can fail if our *autobuilder* is unable to build a program to extract an analysis database.
 
-1. Inside the workflow you'll see a list of jobs on the left.  Click on the Java job to view the logging output and review any errors to determine if there's a build failure.
+1. Inside the workflow you'll see a list of jobs on the left. Click on the Java job to view the logging output and review any errors to determine if there's a build failure.
 
 2. The build failure appears to be caused by a JDK version mismatch. Our project targets JDK version 15. How can we check the Java version that the GitHub hosted runner is using? Does the logging output provide any helpful information?
 
@@ -76,7 +74,7 @@ How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/r
 
 #### Reviewing and managing results
 
-1. Go to the `Code scanning results` in the `Security` tab.
+1. On the `Security` tab, view the `Code scanning alerts`.
 
 2. For a result, determine:
     1. The issue reported.
@@ -102,7 +100,7 @@ Follow the next steps to see it in action.
     ```
 2. Is the vulnerability detected in your PR?
 
-3. You can also configure the check failures for Code Scanning. Go into the `Security & Analysis` settings and modify the Check Failures. Set it to `Only critical/ Only errors` and see how that affects the code scanning status check for subsequent PR checks. In the next steps, you will be enabling additional query suites that have other severity types.
+3. You can also configure the check failures for code scanning. Go into the `Code security and analysis` settings and modify the Check Failures. Set it to `Only critical/ Only errors` and see how that affects the code scanning status check for subsequent PR checks. In the next steps, you will be enabling additional query suites that have other severity types.
 
 #### _Stretch Exercise 1: Fixing false positive results_
 
@@ -110,9 +108,9 @@ If you have identified a false positive, how would you deal with that? What if t
 
 #### _Stretch Exercise 2: Enabling code scanning on your own repository_
 
-So far you've learned how to enable secret scanning, Dependabot and code scanning. Try enabling this on your own repository, and see what kind of results you get!
+So far you've learned how to enable Dependabot, secret scanning, and code scanning. Try enabling this on your own repository, and see what kind of results you get!
 
-### _**Practical Exercise 4**_
+### _**Lab 4**_
 
 #### Customizing CodeQL Configuration
 
@@ -211,7 +209,7 @@ queries:
 ```
 </details>
 
-5. Try specifying directories to scan or not to scan. Why would you include this in the configuration?
+5. Try specifying directories to scan or not to scan. Note that this is only supported for interpreted languages, such as javascript/typescript, python, ruby, etc. Why would you include this in the configuration?
 
 <details>
 <summary>Solution</summary>

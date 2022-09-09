@@ -8,27 +8,27 @@
 - [Enabling Dependabot security updates](#enabling-dependabot-security-updates)
 - [Configuring Dependabot security updates](#configuring-dependabot-security-updates)
 
-### _**Practical Exercise 1**_
+### _**Lab 1**_
 
 #### Enabling Dependabot alerts
 Dependabot can be enabled in the settings of an organization or a repository.
 
-1. Go to the repository settings and enable Dependabot alerts in the *Security & analysis* section. You will be prompted to enable the Dependency Graph if it's not enabled already.
+- Go to the repository settings and enable Dependabot alerts in the `Code security and analysis` section. You will be prompted to enable the dependency graph if it's not enabled already.
 
 #### Reviewing the dependency graph
 Dependabot uses the dependency graph to determine which dependencies are used by your project.
 
-1. Verify in the dependency graph that it found dependencies for:
+- Verify in the dependency graph that it found dependencies for:
     - The frontend service.
     - The authentication service.
     - The gallery service.
     - The storage service.
 
-The dependency graph can be access in the `Insights` tab in your repository.
+The dependency graph can be accessed from the `Insights` tab in your repository.
 
 #### Viewing and managing results
 
-After a few minutes, the security tab in the repository will indicate that there are new security alerts. You will see a "Create a security update" button; if this button is clicked, it will create a Pull Request to update the vulnerable dependency. The next section will show you how to enable security updates for all applicable Dependabot alerts.
+After a few minutes, the `Security` tab in the repository will indicate that there are new security alerts. You will see a **Create a security update** button; click this button to create a pull request (PR) to update the vulnerable dependency. The next section will show you how to enable security updates for all applicable Dependabot alerts.
 
 **Note**: If this not the case, we can trigger an analysis by updating `authn-service/requirements.txt`
 
@@ -36,15 +36,15 @@ After a few minutes, the security tab in the repository will indicate that there
 
 For each dependency alert, we have the option to create a security update or to dismiss the alert with a reason.
 
-2. For one of the alerts create a dependency security update. If Dependabot can update the dependency automatically, it will create a PR.
+2. For one of the alerts, create a dependency security update. If Dependabot can update the dependency automatically, it will create a PR.
 
-3. For one of the alerts dimiss the alert.
+3. For one of the alerts, dimiss the alert.
 
 #### Enabling Dependabot security updates
 
-Dependabot can automatically create PRs to upgrade vulnerable dependencies to non-vulnerable versions. Please note that there may be some Dependabot alerts that don't have patch; therefore, a security update is not available.
+Dependabot can automatically create PRs to upgrade vulnerable dependencies to non-vulnerable versions. Please note that there may be some Dependabot alerts that don't have patches. In those cases, a security update is not available.
 
-1. Go to the repository settings and enable Dependabot security updates in the *Security & analysis* section.
+- Go to the repository settings and enable Dependabot security updates in the *Code security & analysis* section.
 
 After a few minutes multiple PRs will be created that will upgrade vulnerable dependencies.
 
@@ -55,18 +55,18 @@ You can enable Dependabot [*version updates*](https://docs.github.com/en/code-se
 - When version updates are created.
 - What labels are assigned to enable filtering options.
 - Who is assigned to the PR and who should review it.
-- Specify which dependencies are updated and how they are updated.
+- Which dependencies are updated and how they are updated.
 
-Create the file `.github/dependabot.yml` in your repository and configure the `pip` dependency manager to:
-  1. Look for dependency information in the directory `authn-service`.
+Create the `.github/dependabot.yml` file in your repository and configure the `pip` dependency manager to:
+  1. Look for dependency information in the `authn-service` directory.
 
   2. Schedule daily version updates.
 
-  3. Prefix the commit message with the package manager `pip`.
+  3. Prefix the commit message with the `pip` package manager.
 
-  4. Assign the PR to yourself and a person from your workshop team as a reviewer. When specifying GitHub handles in the yml, do so without the `@` symbol. Please see below solution as an example.
+  4. Assign the PR to yourself and a person from your workshop team as a reviewer. When specifying GitHub handles in the yml, do so without the `@` symbol. Please see the following solution as an example.
 
-  5. Add the custom label `triage-required` to enable filtering of the PRs (Make sure the label exists by adding it to `https://github.com/<owner>/<your repo>/labels`).
+  5. Add the custom label `triage-required` to enable filtering of the PRs.
 
   6. Verify your changes by adding a [vulnerable dependency](https://github.com/advisories?query=severity%3Ahigh+ecosystem%3Apip) to `auth-service/requirements.txt`. For example:
 
@@ -79,7 +79,7 @@ How would you know if the configuration cannot be satisfied?
 
 1. Add a non-existing label to the configuration.
 
-2. Trigger a new dependabot security update by adding a vulnerable dependency to one of the projects
+2. Trigger a new dependabot security update by adding a vulnerable dependency to one of the projects.
    For example, we can add the dependency `django-two-factor-auth==1.11` to `auth-service/requirements.txt`
 
 3. Look at the created PR to determine if the configuration has been satisfied.
@@ -109,7 +109,7 @@ updates:
 
 #### Working with Dependency Review
 
-If a Pull Request has dependency changes, you can [review](https://docs.github.com/en/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-dependency-changes-in-a-pull-request) them and see if there are known vulnerabilities with the dependency changes.
+If a PR has dependency changes, you can [review](https://docs.github.com/en/github/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/reviewing-dependency-changes-in-a-pull-request) them and see if there are known vulnerabilities with the dependency changes.
 
    1. Add a vulnerable dependency to `auth-service/requirements.txt` and commit to a new branch. For example, here's a vulnerable dependency:
 
@@ -117,7 +117,7 @@ If a Pull Request has dependency changes, you can [review](https://docs.github.c
     ...
     django-piston==0.2.0
     ```
-   2. Create a Pull Request, and click on `Files changed`.
+   2. Create a PR, and click on `Files changed`.
    3. Click on the `Display the rich diff` button on the `requirements.txt` file to review dependency changes.
 
 💡**Now that we're familiar with Dependabot, let's head over to the secret scanning section, and learn more about it! [Click here](lab%202%20-%20secret-scanning.md).** 💡

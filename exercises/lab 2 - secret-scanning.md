@@ -8,24 +8,24 @@
 - [Excluding files from secret scanning](#excluding-files-from-secret-scanning)
 - [Managing access to alerts](#managing-access-to-alerts)
 
-### _**Practical Exercise 2**_
+### _**Lab 2**_
 
 #### Enabling secret scanning
 Secret scanning can be enabled in the settings of an organization or a repository.
 
-1. Go to the repository settings and enable secret scanning in the *Security & analysis* section.
+1. Go to the repository settings and enable secret scanning in the `Code security and analysis` section.
 
 #### Viewing and managing results
-After a few minutes, the security tab in the repository will indicate that there are new security alerts.
+After a few minutes, the `Security` tab in the repository will indicate that there are new security alerts.
 
-1. Go to the secret scanning section to view the detected secrets.
+- Go to the `Secret scanning` section to view the detected secrets.
 
 For each secret, look at the options to close it and determine which one is most suitable.
 
 #### Introducing a test secret
-When developing test cases it might be the case that secrets are introduced that cannot be abused when disclosed. Secret scanning will still detect and alert on these secrets.
+When developing test cases, you might find that secrets are introduced that cannot be abused when disclosed. Secret scanning will still detect and alert on these secrets.
 
-1. In the GitHub repository file explorer create a test file that will contain a test secret.
+1. In the GitHub repository file explorer, create a test file that contains a test secret.
     - For example the file `storage-service/src/main/resources/application.dev.properties` with the secrets
         ```
         AWS_ACCESS_KEY_ID="AKIAZBQE345LKPTEAHQD"
@@ -68,9 +68,9 @@ While we can close a detected secret as being used in a test, we can also config
     ```
 
 #### Custom patterns for secret scanning
-Secret scanning supports finding other [secret patterns](https://docs.github.com/en/code-security/secret-security/defining-custom-patterns-for-secret-scanning), which are specified by regex patterns and uses the Hyperscan library.
+Secret scanning supports finding other [secret patterns](https://docs.github.com/en/code-security/secret-security/defining-custom-patterns-for-secret-scanning), which are specified by regex patterns and use the Hyperscan library.
 
-1. Add a custom secret pattern by going to the Security and Analysis settings and under the header "Custom patterns" click on `New pattern`.
+1. Add a custom secret pattern by going to the `Code security and analysis` settings and under the header "Custom patterns" click on `New pattern`.
 2. Add a custom pattern name, a secret format and test cases.
 
     For example:
@@ -83,11 +83,11 @@ Secret scanning supports finding other [secret patterns](https://docs.github.com
 
 #### Managing access to alerts
 Due to the nature of secrets, the alerts are only visible to organization and repository administrators.
-Access to other members and teams can be given in the `Security & analysis` setting.
+Access to other members and teams can be given in the `Code security and analysis` setting.
 
-**Note:** The member or teams requires write privileges before access to alerts can be given.
+**Note:** The member or teams require write privileges before access to alerts can be given.
 
-1. In the access to alerts section, add another team member or team to provide access to your repository alerts.
+- In the `Access to alerts` section, add another team member or team to provide access to your repository alerts.
 
 
-💡**Now that we're familiar with secret scanning, let's head over to the code scanning section, and learn more about it! [Click here](lab%203%20-%20code-scanning.md).** 💡
+💡**Now that we're familiar with secret scanning, let's head over to the code scanning section, and learn more about it!** 💡

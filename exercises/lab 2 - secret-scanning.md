@@ -47,6 +47,8 @@ While we can close a detected secret as being used in a test, we can also config
 
     Use a pattern to exclude the file `storage-service/src/main/resources/application.dev.properties`
 
+    Merge your changes to `.github/secret_scanning.yml` to your default branch before going to the next step.
+
     <details>
     <summary>Solution</summary>
     A possible solution is:

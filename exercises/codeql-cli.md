@@ -1,13 +1,20 @@
-### Getting started with the CodeQL CLI
+## Getting started with the CodeQL CLI
 
 When you want to generate a CodeQL database locally and run the pre-compiled queries against it, this is the way to go.
 
-First let's download the CodeQL bundle! Head over [here](https://github.com/github/codeql-action/releases ) and download the approprate bundle for your operating system.
-Once it's downloaded, untar the content to a CodeQL home folder and you can add CodeQL to your path if you'd like (or use Brew install for this)
+First let's download the CodeQL bundle!
 
-```
-export PATH="/Documents/codeql-home/codeql:$PATH"
-```
+### Pre-requisites
+
+You will need to make sure you have the GitHub CLI installed. For more information on how to install the CLI, check out this installation [doc](https://github.com/cli/cli#installation)
+
+### Install the extension
+
+Using the GitHub CLI, we will install the codeql cli,
+
+  1. `gh extensions install github/gh-codeql`
+  1. `sudo gh codeql install-stub` (this allows you to run `codeql` in your terminal without having to invoke `gh codeql`)
+  1. `codeql set-version latest` (this will auto download the latest version of the cli)
 
 Check to make sure you can use the CodeQL CLI
 
@@ -15,11 +22,16 @@ Check to make sure you can use the CodeQL CLI
 codeql --version
 ```
 
+## Using the CodeQL CLI
+
 Now we need to use the CodeQL CLI on an actual repository. Let's start here with our [GHAS training material](https://github.com/ghas-bootcamp/ghas-bootcamp)
 There's multiple languages being used here, so for the purposes of this tutorial let's try to scan the Javascript portions of the codebase. 
 
 Clone this repository and `cd` into it.
 
+### Install the Javascript Bundle
+
+We will need to download the latest javascript queries to scan the code with. In your terminal, run `codeql pack download codeql/javascript-queries`
 
 ### codeql database create
 
@@ -30,7 +42,7 @@ You can rely on the autobuild.sh script as well, or you can supply your own buil
 Please review this [list](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/) of currently supported languages and frameworks.
 
 
-```
+```bash
 codeql database create db --language=javascript
 ```
 
@@ -52,18 +64,22 @@ Now that we have a database to work with, let's run some queries against it! We 
 - `$CODEQL_SUPPORT_LANGUAGE-security-extended.qls`
 - `$CODEQL_SUPPORT_LANGUAGE-security-and-quality.qls`
 
-If you have the CodeQL bundle on path, you can reference these query suites by their filenames. If you don't, you can use the full path to the query suite. 
-As mentioned in the beginning, the queries from the CodeQL bundle are pre-compiled. 
-If you have a custom query suite, you will see that CodeQL will create a compiled query plan.
+By default when we scan with `codeql/javascript-queries` it will default to `javascript-code-scanning.qls`.
 
-```
-codeql database analyze db javascript-code-scanning.qls --format=sarif-latest --output=codeql-javascript-results.sarif
+```bash
+codeql database analyze db --format=sarif-latest --output=codeql-javascript-results.sarif codeql/javascript-queries
 ```
 
 You will see the queries being evaluated. When this process is done, a SARIF should have been created. The SARIF contains results from the analysis. 
 If the results array is empty, it means no results were found. If you want to view the SARIF, you can use `jq` to parse through it, or you can use a SARIF Viewer, such as this [one](https://marketplace.visualstudio.com/items?itemName=WDGIS.MicrosoftSarifViewer). Also if you have the `vs-codeql-starter` [workspace](https://github.com/github/vscode-codeql-starter), you can run particular queries against an imported CodeQL database and see the analysis in the IDE.
 
-Here are some advanced things to note:
+To scan your code using the other query suites, you just need to append that to the original command
+
+```bash
+codeql database analyze db --format=sarif-latest --output=codeql-javascript-results.sarif codeql/javascript-queries:codeql-suites/javascript-security-extended.qls
+```
+
+#### Things to note
 - When dealing with multiple analyses for the same commit (whether you're analysing multiple languages or have parallelized builds for a monorepo), make sure to use the `--sarif-category` flag to categorize the analyses.
 Failure to do so, in particular on a pull request, can cause confusion in that Code Scanning may not be able to detect a baseline analysis to compare the PR results.
 - Use this [endpoint](https://docs.github.com/en/rest/reference/code-scanning#list-code-scanning-analyses-for-a-repository) to list the CodeQL analyses of a repository, so that you can inspect the category for each analysis.
@@ -84,7 +100,9 @@ The `--ref` and `--commit` flag combinations can be one of the following:
   - ` curl -H "Accept: application/vnd.github.v3+json" \\n  -H "Authorization: token $GH_TOKEN" \\n  https://api.github.com/repos/<org-name>/<repo-name>/pulls/<pull-request-number> | jq '.merge_commit_sha'`
   - The merge commit is a commit created to make sure PR checks are ran; this commit doesn't exist in the actual source tree/`git log`.
 
-```
+If you are supplying the `--commit` flag, make sure you use the full commit hash and not the shortened one
+
+```bash
 codeql github upload-results --repository=$GITHUB_REPOSITORY --ref=$GITHUB_REF --commit=$GITHUB_SHA --sarif=codeql-javascript-results.sarif --github-auth-stdin=<YOUR TOKEN>
 ```
 

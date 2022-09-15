@@ -29,12 +29,12 @@ CodeQL requires a build of compiled languages. An analysis job can fail if our *
 
 1. Inside the workflow you'll see a list of jobs on the left. Click on the Java job to view the logging output and review any errors to determine if there's a build failure.
 
-2. The build failure appears to be caused by a JDK version mismatch. Our project targets JDK version 15. How can we check the Java version that the GitHub hosted runner is using? Does the logging output provide any helpful information?
+2. The `autobuild` compilation failure appears to be caused by a JDK version mismatch. Our project targets JDK version 15. How can we check the Java version that the GitHub hosted runner is using? Does the logging output provide any helpful information?
 
     <details>
     <summary>Solution</summary>
 
-    - GitHub saves workflow files in the `.github/workflows` directory of your repository. You can add a command to the workflow that returns the Java version.
+    - GitHub saves workflow files in the `.github/workflows` directory of your repository. You can add a command to the existing `codeql-analysis.yml` workflow to output the Java version.  Add this anywhere before the step that is failing to help in your debugging:
 
     ```yaml
     - run: |
@@ -44,7 +44,7 @@ CodeQL requires a build of compiled languages. An analysis job can fail if our *
 
     </details>
 
-3. Resolve the JDK version issue by using the `setup-java` Action to specify a version.
+3. The previous debugging has concluded that we have a mismatch.  Resolve the JDK version issue by using the `setup-java` Action in `codeql-analysis.yml` to explicitly specify a version.  This should be added to the workflow before the `autobuild` step to properly configure the runtime environment before the build.
 
     <details>
     <summary>Solution</summary>
@@ -59,7 +59,7 @@ CodeQL requires a build of compiled languages. An analysis job can fail if our *
 
 #### Using context and expressions to modify build
 
-How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions) the workflow such that the autobuild step only targets Java?
+How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions) the workflow such that the autobuild step only targets compiled languages (`java` in our repository)?
 
   <details>
   <summary>Solution</summary>
@@ -68,7 +68,7 @@ How would you [modify](https://docs.github.com/en/free-pro-team@latest/actions/r
 
   ```yaml
   - if: matrix.language == 'java'  
-    uses: github/codeql-action/autobuild@v1
+    uses: github/codeql-action/autobuild@v2
   ```
   </details>
 

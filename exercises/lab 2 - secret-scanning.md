@@ -82,7 +82,7 @@ Secret scanning supports finding other [secret patterns](https://docs.github.com
  3. Save your pattern and observe the secret scanning alerts page to see if your custom secret pattern has been detected.
 
 #### Managing access to alerts
-Due to the nature of secrets, the alerts are only visible to organization and repository administrators.
+Due to the nature of secrets, the alerts are only visible to organization and repository administrators and users with `write` or higher access to the repo .
 Access to other members and teams can be given in the `Code security and analysis` setting.
 
 **Note:** The member or teams require write privileges before access to alerts can be given.

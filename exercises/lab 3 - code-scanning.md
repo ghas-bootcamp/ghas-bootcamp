@@ -16,7 +16,7 @@ Code scanning enables developers to integrate security analysis tooling into the
 
 #### Enabling code scanning
 
-1. On the `Security` tab, in the **Vulnerability alerts** section, click **Code scanning**, and then click the **Configure CodeQL alerts** button. 
+1. On the `Security` tab, in the **Vulnerability alerts** section, click **Code scanning**, and then click the **Configure scanning tool** button. 
 
 2. Review the created Action workflow file `codeql-analysis.yml` and choose `Start commit` to accept the default proposed workflow.
 

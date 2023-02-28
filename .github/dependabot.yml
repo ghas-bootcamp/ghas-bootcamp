@@ -1,19 +1,14 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-
 version: 2
 updates:
-  - package-ecosystem: "pip" # See documentation for possible values
-    directory: "/authn-service" # Location of package manifests
+  - package-ecosystem: "pip"
+    directory: "/authn-service"
     schedule:
       interval: "daily"
     labels:
       - "triage-required"
     assignees:
-      - "@andremeneses"
+      - "tidoemanuele"
     reviewers:
-      - "@rncortesao"
+      - "tidoemanuele"
     commit-message:
       prefix: "pip"

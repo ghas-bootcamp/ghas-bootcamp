@@ -65,7 +65,7 @@ jobs:
         java-version: 16
         distribution: 'microsoft'
     - name: Autobuild
-    - if: matrix.language == 'java'  
+      if: matrix.language == 'java'  
       uses: github/codeql-action/autobuild@v2
 
     # ℹ️ Command-line programs to run using the OS shell.

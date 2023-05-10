@@ -110,8 +110,6 @@ If you have identified a false positive, how would you deal with that? What if t
 
 So far you've learned how to enable Dependabot, secret scanning, and code scanning. Try enabling this on your own repository, and see what kind of results you get!
 
-### _**Lab 4**_
-
 #### Customizing CodeQL Configuration
 
 By default, CodeQL uses a selection of queries that provide high quality security results.

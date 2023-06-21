@@ -11,7 +11,7 @@
 ### _**Lab 2**_
 
 #### Enabling secret scanning
-Secret scanning can be enabled in the settings of an organization or a repository.
+Secret scanning can be enabled in the settings of an organization or a repository. If Advanced Security is not enabled yet, then enable that first (same settings screen).
 
 1. Go to the repository settings and enable secret scanning in the `Code security and analysis` section.
 

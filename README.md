@@ -1,4 +1,4 @@
-<h1 align="center">NO LONGER ACTIVE/IN USE</h1>
+# This is the legacy bootcamp org that partners still use when delivering to customers
 <h1 align="center">GitHub Advanced Security Bootcamp</h1>
 <p align="center">
   <a href="#mega-prerequisites">Prerequisites</a> •  

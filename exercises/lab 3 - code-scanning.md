@@ -16,11 +16,11 @@ Code scanning enables developers to integrate security analysis tooling into the
 
 #### Enabling code scanning
 
-1. On the `Security` tab, in the **Vulnerability alerts** section, click **Code scanning**, and then click the **Configure scanning tool** button. 
+1. On the `Security` tab, in the **Vulnerability alerts** section, click **Code scanning**, and then click the **Configure scanning tool** button. You will be directed to the `Code security and analysis` section of the repository settings. Click the drop down button **Set up** which provides two choices (Default, Advanced) - please select **Advanced** for this lab in order to generate the CodeQL related workflow file.
 
-2. Review the created Action workflow file `codeql-analysis.yml` and choose `Start commit` to accept the default proposed workflow.
+3. Review the created Action workflow file `codeql-analysis.yml` and choose `Start commit` to accept the default proposed workflow.
 
-3. Head over to the `Actions` tab to see the created workflow in action. Click on the workflow to view details and status for each analysis job.
+4. Head over to the `Actions` tab to see the created workflow in action. Click on the workflow to view details and status for each analysis job.
 
 
 #### Reviewing any failed analysis job

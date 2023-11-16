@@ -218,10 +218,10 @@ name: "My CodeQL config"
 disable-default-queries: true
 
 queries:
-    - uses: ./custom-queries/code-scanning.qls
+  - uses: ./custom-queries/code-scanning.qls
 
 paths-ignore:
- - '**/test/**'
+  - '**/test/**'
 ```
 </details>
 

@@ -16,6 +16,8 @@ cd ghas-bootcamp
 git remote set-url origin git@github.com:{org-or-username}/{repo-name}.git
 ```
 
+example: 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
+
 ## 🏫 Agenda
 
 We will go over the following topics:

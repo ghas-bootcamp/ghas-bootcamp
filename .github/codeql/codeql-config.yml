@@ -1,0 +1,12 @@
+name: "My CodeQL config"
+
+disable-default-queries: true
+
+queries:
+    - uses: security-and-quality    
+    - uses: ./custom-queries/code-scanning.qls    
+    - uses: ./custom-queries/go/jwt.ql   
+    - uses: security-and-quality
+
+paths-ignore:
+ - '**/test/**'

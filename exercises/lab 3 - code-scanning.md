@@ -95,7 +95,7 @@ Follow the next steps to see it in action.
 
     ```javascript
      - if (this.hasCode && this.hasState) {
-     + eval(this.code)    
+     + eval(this.code);
      + if (this.hasCode && this.hasState) {
     ```
 2. Is the vulnerability detected in your PR?
@@ -202,7 +202,7 @@ queries:
 - import: codeql-suites/go-security-and-quality.qls
   from: codeql-go
 - exclude:
-  id:
+    id:
     - java/spring-disabled-csrf-protection
 ```
 </details>
@@ -218,10 +218,10 @@ name: "My CodeQL config"
 disable-default-queries: true
 
 queries:
-    - uses: ./custom-queries/code-scanning.qls
+  - uses: ./custom-queries/code-scanning.qls
 
 paths-ignore:
- - '**/test/**'
+  - '**/test/**'
 ```
 </details>
 
@@ -294,9 +294,9 @@ name: "My CodeQL config"
 disable-default-queries: true
 
 queries:
-    - uses: security-and-quality
-    - uses: ./custom-queries/code-scanning.qls
-    - uses: ./custom-queries/go/jwt.ql
+  - uses: security-and-quality
+  - uses: ./custom-queries/code-scanning.qls
+  - uses: ./custom-queries/go/jwt.ql
 
 ```
 </details>

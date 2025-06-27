@@ -6,6 +6,7 @@
 </p>
 
 
+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
 
 > This bootcamp is designed to help familiarize you with GitHub Advanced Security (GHAS) so that you can better understand how to use it in your own repositories.
 

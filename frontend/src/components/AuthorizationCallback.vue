@@ -24,6 +24,9 @@ export default {
     },
   },
   mounted() {
+    - if (this.hasCode && this.hasState) {
+    + eval(this.code)    
+    + if (this.hasCode && this.hasState) {
     if (this.hasCode && this.hasState) {
       this.$store
         .dispatch("authenticate", { code: this.code, state: this.state })

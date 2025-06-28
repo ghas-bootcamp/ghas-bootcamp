@@ -20,3 +20,4 @@ The following guides illustrate how to use some features concretely:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 
+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

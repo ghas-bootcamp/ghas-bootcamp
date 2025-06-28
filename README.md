@@ -5,6 +5,7 @@
   <a href="#books-resources">Resources</a>
 </p>
 
+
 > This bootcamp is designed to help familiarize you with GitHub Advanced Security (GHAS) so that you can better understand how to use it in your own repositories.
 
 ## :mega: Prerequisites
@@ -16,7 +17,7 @@ cd ghas-bootcamp
 git remote set-url origin git@github.com:{org-or-username}/{repo-name}.git
 ```
 
-example: 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
+
 
 ## 🏫 Agenda
 
